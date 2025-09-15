@@ -1,11 +1,22 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/HeroSection';
+import DestinationExplorer from '@/components/DestinationExplorer';
+import SmartPlanner from '@/components/SmartPlanner';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <HeroSection />
+      <DestinationExplorer />
+      <SmartPlanner />
+      
+      {/* Additional sections will be added in future iterations */}
+      <div className="py-20 text-center">
+        <p className="text-muted-foreground">
+          More exciting features coming soon: Local Marketplace, Government Analytics, Emergency Support, and AR/VR Experiences
+        </p>
       </div>
     </div>
   );
