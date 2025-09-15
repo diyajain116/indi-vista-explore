@@ -27,8 +27,8 @@ const Navigation = () => {
               <MapPin className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">भारत यात्रा</h1>
-              <p className="text-xs text-muted-foreground">India Tourism</p>
+              <h1 className="text-xl font-bold text-foreground">झारखंड यात्रा</h1>
+              <p className="text-xs text-muted-foreground">Jharkhand Tourism</p>
             </div>
           </div>
 
@@ -37,7 +37,7 @@ const Navigation = () => {
             <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
-                placeholder="Search destinations, experiences, hotels..."
+                placeholder="Search Ranchi, Jamshedpur, Deoghar, Hazaribagh..."
                 className="pl-10 pr-4 py-2 w-full rounded-xl border-primary/20 focus:border-primary"
               />
             </div>

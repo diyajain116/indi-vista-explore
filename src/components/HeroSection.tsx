@@ -4,7 +4,7 @@ import { Search, Star, Users, MapPin, Calendar, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import heroImage from '@/assets/hero-tourism.jpg';
+import heroImage from '@/assets/jharkhand-hero.jpg';
 
 const HeroSection = () => {
   const stats = [
@@ -19,7 +19,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Indian Heritage Tourism"
+          alt="Jharkhand Tourism Heritage"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
@@ -43,13 +43,13 @@ const HeroSection = () => {
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
                 <span className="inline-block px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full text-sm font-medium text-primary-glow border border-primary/30 mb-4">
-                  🇮🇳 Incredible India Awaits
+                  🌿 Vananchal Ki Yatra
                 </span>
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  Discover
-                  <span className="bg-gradient-to-r from-primary-glow to-accent bg-clip-text text-transparent"> Bharat</span>
+                  Explore
+                  <span className="bg-gradient-to-r from-primary-glow to-accent bg-clip-text text-transparent"> Jharkhand</span>
                   <br />
-                  Like Never Before
+                  Nature's Paradise
                 </h1>
               </motion.div>
               
@@ -59,9 +59,9 @@ const HeroSection = () => {
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="text-xl text-gray-200 max-w-2xl leading-relaxed"
               >
-                Experience India's rich heritage with AI-powered planning, 360° previews, 
-                and seamless booking. From royal palaces to spiritual journeys - your perfect 
-                Indian adventure starts here.
+                Discover Jharkhand's pristine waterfalls, rich tribal culture, ancient temples, 
+                and vibrant festivals. From the steel city of Jamshedpur to the spiritual Deoghar - 
+                your authentic Jharkhand adventure begins here.
               </motion.p>
 
               {/* Search Interface */}
@@ -75,7 +75,7 @@ const HeroSection = () => {
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-200 mb-2">Where to?</label>
                     <Input
-                      placeholder="Rajasthan, Goa, Kerala..."
+                      placeholder="Ranchi, Jamshedpur, Deoghar, Hazaribagh..."
                       className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:bg-white/30"
                     />
                   </div>
@@ -135,9 +135,9 @@ const HeroSection = () => {
                 
                 <div className="space-y-4">
                   {[
-                    { name: 'Golden Triangle', price: '₹15,999', rating: 4.9, image: '🏰' },
-                    { name: 'Kerala Backwaters', price: '₹12,499', rating: 4.8, image: '🌴' },
-                    { name: 'Spiritual Varanasi', price: '₹8,999', rating: 4.7, image: '🕉️' }
+                    { name: 'Ranchi Hills Circuit', price: '₹8,999', rating: 4.8, image: '🏔️' },
+                    { name: 'Deoghar Temple Trail', price: '₹6,499', rating: 4.9, image: '🕉️' },
+                    { name: 'Jamshedpur Industrial Tour', price: '₹5,999', rating: 4.6, image: '🏭' }
                   ].map((dest, index) => (
                     <motion.div
                       key={index}
@@ -170,14 +170,14 @@ const HeroSection = () => {
                     <span className="text-sm font-bold">AI</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold">यात्रा AI Assistant</h4>
-                    <p className="text-xs text-gray-300">Your personal travel guide</p>
+                    <h4 className="font-semibold">झारखंड AI Assistant</h4>
+                    <p className="text-xs text-gray-300">Your Jharkhand travel guide</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-200 bg-white/10 rounded-lg p-3 border border-white/20">
-                  "Based on your preferences for heritage sites and adventure, I recommend 
-                  a 7-day Rajasthan circuit with Jaipur, Udaipur, and Jodhpur. 
-                  Perfect weather window: Oct 15-22. Shall I create your itinerary?"
+                  "Perfect timing! I recommend exploring Ranchi's Rock Garden, Hundru Falls, 
+                  and Deoghar's Baidyanath Temple. The monsoon season (July-Sep) offers 
+                  spectacular waterfalls. Shall I plan your 5-day Jharkhand discovery tour?"
                 </p>
                 <Button 
                   size="sm" 

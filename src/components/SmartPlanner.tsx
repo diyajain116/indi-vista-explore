@@ -22,12 +22,12 @@ const SmartPlanner = () => {
   ];
 
   const travelStyles = [
-    { id: 'heritage', label: 'Heritage Explorer', icon: '🏛️', description: 'Monuments, forts, palaces' },
-    { id: 'spiritual', label: 'Spiritual Seeker', icon: '🕉️', description: 'Temples, ashrams, meditation' },
-    { id: 'adventure', label: 'Adventure Enthusiast', icon: '🏔️', description: 'Trekking, rafting, wildlife' },
-    { id: 'cultural', label: 'Culture Lover', icon: '🎭', description: 'Local festivals, arts, cuisine' },
-    { id: 'luxury', label: 'Luxury Traveler', icon: '✨', description: 'Premium stays, fine dining' },
-    { id: 'budget', label: 'Budget Explorer', icon: '🎒', description: 'Affordable, authentic experiences' }
+    { id: 'nature', label: 'Nature Explorer', icon: '🌿', description: 'Waterfalls, hills, wildlife sanctuaries' },
+    { id: 'spiritual', label: 'Spiritual Seeker', icon: '🕉️', description: 'Temples, Jyotirlingas, pilgrimage sites' },
+    { id: 'tribal', label: 'Tribal Culture', icon: '🎭', description: 'Indigenous culture, art, festivals' },
+    { id: 'adventure', label: 'Adventure Enthusiast', icon: '🏔️', description: 'Trekking, rock climbing, caves' },
+    { id: 'industrial', label: 'Industrial Tourism', icon: '🏭', description: 'Steel plants, mining heritage' },
+    { id: 'wellness', label: 'Wellness Retreat', icon: '🧘', description: 'Ayurveda, meditation, hot springs' }
   ];
 
   const handleGenerateItinerary = async () => {
@@ -114,19 +114,19 @@ const SmartPlanner = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-4"
                   >
-                    <h3 className="text-xl font-semibold text-foreground">Where would you like to explore?</h3>
+                    <h3 className="text-xl font-semibold text-foreground">Where would you like to explore in Jharkhand?</h3>
                     <Input
-                      placeholder="e.g., Rajasthan, Kerala, Golden Triangle..."
+                      placeholder="e.g., Ranchi, Deoghar, Jamshedpur, Hazaribagh..."
                       className="text-lg py-3"
                     />
                     <div className="grid grid-cols-2 gap-3">
-                      {['Rajasthan', 'Kerala', 'Himachal', 'Goa', 'Tamil Nadu', 'Kashmir'].map((state) => (
+                      {['Ranchi', 'Deoghar', 'Jamshedpur', 'Hazaribagh', 'Dhanbad', 'Bokaro'].map((city) => (
                         <Button
-                          key={state}
+                          key={city}
                           variant="outline"
                           className="justify-start hover:bg-primary hover:text-primary-foreground"
                         >
-                          {state}
+                          {city}
                         </Button>
                       ))}
                     </div>
@@ -324,10 +324,10 @@ const SmartPlanner = () => {
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-royal to-primary flex items-center justify-center pulse-heritage">
                   <Bot className="w-5 h-5 text-white" />
                 </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">यात्रा AI Assistant</h4>
-                  <p className="text-sm text-muted-foreground">Real-time planning help</p>
-                </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">झारखंड AI Assistant</h4>
+                    <p className="text-sm text-muted-foreground">Jharkhand travel planning help</p>
+                  </div>
                 <Badge className="ml-auto bg-green-100 text-green-800">Online</Badge>
               </div>
 
@@ -335,17 +335,17 @@ const SmartPlanner = () => {
                 {[
                   {
                     type: 'ai',
-                    message: 'Welcome! I\'m here to help you plan the perfect Indian adventure. What kind of experience are you looking for?',
+                    message: 'Welcome! I\'m here to help you plan the perfect Jharkhand adventure. What kind of experience are you looking for - waterfalls, temples, tribal culture, or industrial heritage?',
                     time: '2 min ago'
                   },
                   {
                     type: 'user',
-                    message: 'I want to explore Rajasthan\'s heritage sites with my family',
+                    message: 'I want to explore Jharkhand\'s waterfalls and tribal culture with my family',
                     time: '1 min ago'
                   },
                   {
                     type: 'ai',
-                    message: 'Perfect! Rajasthan is amazing for families. Based on current weather and crowd data, I recommend visiting Jaipur, Udaipur, and Jodhpur. The best time window is October 15-25. Would you like me to create a detailed 7-day itinerary?',
+                    message: 'Excellent choice! Jharkhand offers amazing waterfalls like Hundru Falls and rich tribal heritage. The monsoon season (July-September) is perfect for waterfalls. I recommend a 5-day circuit covering Ranchi, Deoghar, and tribal villages. Shall I create your detailed itinerary?',
                     time: 'Just now'
                   }
                 ].map((chat, index) => (

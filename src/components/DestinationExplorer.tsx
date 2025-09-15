@@ -6,61 +6,107 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 const DestinationExplorer = () => {
-  const [activeCategory, setActiveCategory] = useState('heritage');
+  const [activeCategory, setActiveCategory] = useState('waterfalls');
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const categories = [
-    { id: 'heritage', label: 'Heritage Sites', icon: '🏰', count: 120 },
-    { id: 'nature', label: 'Natural Wonders', icon: '🌄', count: 89 },
-    { id: 'spiritual', label: 'Spiritual Journey', icon: '🕉️', count: 156 },
-    { id: 'adventure', label: 'Adventure', icon: '🏔️', count: 67 },
-    { id: 'culture', label: 'Cultural Hubs', icon: '🎭', count: 98 },
-    { id: 'beaches', label: 'Coastal Paradise', icon: '🏖️', count: 45 }
+    { id: 'waterfalls', label: 'Waterfalls', icon: '💧', count: 45 },
+    { id: 'temples', label: 'Temples & Spiritual', icon: '🕉️', count: 89 },
+    { id: 'tribal', label: 'Tribal Heritage', icon: '🎭', count: 67 },
+    { id: 'hills', label: 'Hills & Nature', icon: '🏔️', count: 78 },
+    { id: 'industrial', label: 'Industrial Tourism', icon: '🏭', count: 25 },
+    { id: 'wildlife', label: 'Wildlife Sanctuaries', icon: '🦌', count: 15 }
   ];
 
   const destinations = {
-    heritage: [
+    waterfalls: [
       {
-        id: 'taj-mahal',
-        name: 'Taj Mahal, Agra',
-        state: 'Uttar Pradesh',
+        id: 'hundru-falls',
+        name: 'Hundru Falls',
+        state: 'Ranchi',
+        rating: 4.8,
+        reviews: 12345,
+        price: '₹1,500',
+        image: '💧',
+        description: 'Spectacular 320ft waterfall cascading from Subarnarekha river',
+        highlights: ['Monsoon Trekking', 'Photography', 'Nature Walk'],
+        duration: '4 hours',
+        bestTime: 'Jul-Oct',
+        category: 'Natural'
+      },
+      {
+        id: 'jonha-falls',
+        name: 'Jonha Falls',
+        state: 'Ranchi',
+        rating: 4.6,
+        reviews: 8967,
+        price: '₹1,200',
+        image: '🌊',
+        description: 'Hidden gem waterfall perfect for adventure seekers',
+        highlights: ['Rock Climbing', 'Cave Exploration', 'Picnic Spot'],
+        duration: '5 hours',
+        bestTime: 'Jun-Sep',
+        category: 'Adventure'
+      },
+      {
+        id: 'dassam-falls',
+        name: 'Dassam Falls',
+        state: 'Ranchi',
+        rating: 4.7,
+        reviews: 10234,
+        price: '₹1,800',
+        image: '💦',
+        description: 'Multi-tiered waterfall offering breathtaking valley views',
+        highlights: ['Valley Views', 'Tribal Culture', 'Local Cuisine'],
+        duration: '6 hours',
+        bestTime: 'Jul-Nov',
+        category: 'Scenic'
+      }
+    ],
+    temples: [
+      {
+        id: 'baidyanath-dham',
+        name: 'Baidyanath Dham',
+        state: 'Deoghar',
         rating: 4.9,
         reviews: 45678,
         price: '₹2,500',
-        image: '🕌',
-        description: 'Eternal symbol of love and architectural marvel',
-        highlights: ['UNESCO World Heritage', 'Sunrise Tour', 'Audio Guide'],
-        duration: '4 hours',
+        image: '🕉️',
+        description: 'One of the 12 Jyotirlingas, sacred pilgrimage site',
+        highlights: ['Jyotirlinga Darshan', 'Temple Complex', 'Spiritual Retreat'],
+        duration: '8 hours',
         bestTime: 'Oct-Mar',
-        category: 'Monuments'
+        category: 'Pilgrimage'
       },
       {
-        id: 'red-fort',
-        name: 'Red Fort, Delhi',
-        state: 'Delhi',
+        id: 'chinnamasta-temple',
+        name: 'Chinnamasta Temple',
+        state: 'Hazaribagh',
         rating: 4.7,
-        reviews: 32145,
-        price: '₹1,200',
-        image: '🏰',
-        description: 'Majestic Mughal fortress and seat of power',
-        highlights: ['Light & Sound Show', 'Museum', 'Garden Walk'],
-        duration: '3 hours',
-        bestTime: 'Nov-Feb',
-        category: 'Forts'
-      },
+        reviews: 15432,
+        price: '₹1,800',
+        image: '🛕',
+        description: 'Ancient Shakti Peeth temple dedicated to Goddess Chinnamasta',
+        highlights: ['Tantric Traditions', 'Ancient Architecture', 'Religious Rituals'],
+        duration: '4 hours',
+        bestTime: 'Sep-Feb',
+        category: 'Shakti Peeth'
+      }
+    ],
+    tribal: [
       {
-        id: 'amber-fort',
-        name: 'Amber Fort, Jaipur',
-        state: 'Rajasthan',
-        rating: 4.8,
-        reviews: 28934,
-        price: '₹3,000',
-        image: '🏛️',
-        description: 'Royal grandeur overlooking Maota Lake',
-        highlights: ['Elephant Ride', 'Mirror Palace', 'Sound Show'],
-        duration: '5 hours',
-        bestTime: 'Oct-Apr',
-        category: 'Palaces'
+        id: 'tribal-heritage',
+        name: 'Tribal Heritage Museum',
+        state: 'Ranchi',
+        rating: 4.5,
+        reviews: 6789,
+        price: '₹800',
+        image: '🎭',
+        description: 'Experience rich tribal culture and traditional art forms',
+        highlights: ['Cultural Shows', 'Traditional Crafts', 'Tribal Dance'],
+        duration: '3 hours',
+        bestTime: 'Year Round',
+        category: 'Cultural'
       }
     ]
   };
@@ -85,11 +131,11 @@ const DestinationExplorer = () => {
         >
           <h2 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
             Explore
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Incredible India</span>
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Beautiful Jharkhand</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Discover India's diverse destinations with immersive 360° previews, AI recommendations, 
-            and seamless booking experience tailored for modern travelers.
+            Discover Jharkhand's diverse landscapes from pristine waterfalls to spiritual temples, 
+            tribal heritage to modern industrial cities - all with immersive 360° previews and seamless booking.
           </p>
         </motion.div>
 
@@ -128,7 +174,7 @@ const DestinationExplorer = () => {
           layout
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {(destinations[activeCategory as keyof typeof destinations] || destinations.heritage).map((destination, index) => (
+          {(destinations[activeCategory as keyof typeof destinations] || destinations.waterfalls).map((destination, index) => (
             <motion.div
               key={destination.id}
               layout
