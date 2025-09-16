@@ -26,71 +26,114 @@ const HeroSection = () => {
         <div className="absolute inset-0 cultural-pattern"></div>
       </div>
 
-      {/* Content */}
+      {/* Enhanced Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Main Content */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Enhanced Left Column - Main Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-white space-y-8"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-white space-y-10"
           >
             <div className="space-y-6">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
+                transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
               >
-                <span className="inline-block px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full text-sm font-medium text-primary-glow border border-primary/30 mb-4">
-                  🌿 Vananchal Ki Yatra
-                </span>
-                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  Explore
-                  <span className="bg-gradient-to-r from-primary-glow to-accent bg-clip-text text-transparent"> Jharkhand</span>
+                <motion.span 
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-primary/30 to-accent/30 backdrop-blur-lg rounded-full text-sm font-semibold text-white border border-white/20 mb-6 sparkle-effect"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  🌿 वनांचल की यात्रा - Vananchal Ki Yatra
+                </motion.span>
+                <motion.h1 
+                  className="text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                >
+                  <motion.span
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.7, duration: 0.8 }}
+                  >
+                    Explore
+                  </motion.span>
                   <br />
-                  Nature's Paradise
-                </h1>
+                  <motion.span 
+                    className="bg-gradient-to-r from-primary-glow via-accent to-royal bg-clip-text text-transparent"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.9, duration: 0.8 }}
+                  >
+                    Jharkhand
+                  </motion.span>
+                  <br />
+                  <motion.span
+                    className="text-white/90"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.1, duration: 0.8 }}
+                  >
+                    Nature's Paradise
+                  </motion.span>
+                </motion.h1>
               </motion.div>
               
               <motion.p
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-xl text-gray-200 max-w-2xl leading-relaxed"
+                transition={{ delay: 1.3, duration: 0.8 }}
+                className="text-xl lg:text-2xl text-white/90 max-w-2xl leading-relaxed font-light"
               >
                 Discover Jharkhand's pristine waterfalls, rich tribal culture, ancient temples, 
                 and vibrant festivals. From the steel city of Jamshedpur to the spiritual Deoghar - 
                 your authentic Jharkhand adventure begins here.
               </motion.p>
 
-              {/* Search Interface */}
+              {/* Enhanced Search Interface */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-                className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.5, duration: 0.8 }}
+                className="card-glass relative overflow-hidden"
               >
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-200 mb-2">Where to?</label>
+                <div className="flex flex-col sm:flex-row gap-6">
+                  <motion.div 
+                    className="flex-1"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <label className="block text-sm font-semibold text-white/90 mb-3">Where to explore? 🗺️</label>
                     <Input
                       placeholder="Ranchi, Jamshedpur, Deoghar, Hazaribagh..."
-                      className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:bg-white/30"
+                      className="input-heritage text-white placeholder:text-white/60 text-lg py-4"
                     />
-                  </div>
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-200 mb-2">When?</label>
+                  </motion.div>
+                  <motion.div 
+                    className="flex-1"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <label className="block text-sm font-semibold text-white/90 mb-3">When? 📅</label>
                     <Input
                       type="date"
-                      className="bg-white/20 border-white/30 text-white focus:bg-white/30"
+                      className="input-heritage text-white text-lg py-4"
                     />
-                  </div>
+                  </motion.div>
                   <div className="flex items-end">
-                    <Button className="btn-heritage px-8 py-3 text-lg font-semibold whitespace-nowrap">
-                      <Search className="w-5 h-5 mr-2" />
-                      Explore Now
-                    </Button>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button className="btn-heritage px-10 py-4 text-lg font-bold whitespace-nowrap shadow-2xl">
+                        <Search className="w-6 h-6 mr-3" />
+                        Explore Now
+                      </Button>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
@@ -117,76 +160,145 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Column - Featured Destinations */}
+          {/* Enhanced Right Column - Featured Destinations */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="space-y-6"
+            initial={{ opacity: 0, x: 100, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="space-y-8"
           >
-            <Card className="card-heritage bg-white/10 backdrop-blur-lg border-white/20 text-white">
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-semibold">🔥 Trending Now</h3>
-                  <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
-                    View All <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </div>
+            <motion.div
+              className="card-featured text-white"
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="p-8">
+                <motion.div 
+                  className="flex items-center justify-between mb-6"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  <h3 className="text-2xl font-bold flex items-center">
+                    🔥 <span className="ml-2 gradient-text-secondary">Trending Now</span>
+                  </h3>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 hover:text-white transition-all duration-300">
+                      View All <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </motion.div>
+                </motion.div>
                 
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {[
-                    { name: 'Ranchi Hills Circuit', price: '₹8,999', rating: 4.8, image: '🏔️' },
-                    { name: 'Deoghar Temple Trail', price: '₹6,499', rating: 4.9, image: '🕉️' },
-                    { name: 'Jamshedpur Industrial Tour', price: '₹5,999', rating: 4.6, image: '🏭' }
+                    { name: 'Ranchi Hills Circuit', price: '₹8,999', rating: 4.8, image: '🏔️', desc: 'Scenic hill stations & waterfalls' },
+                    { name: 'Deoghar Temple Trail', price: '₹6,499', rating: 4.9, image: '🕉️', desc: 'Sacred temples & spiritual journey' },
+                    { name: 'Jamshedpur Industrial Tour', price: '₹5,999', rating: 4.6, image: '🏭', desc: 'Steel city & modern marvels' }
                   ].map((dest, index) => (
                     <motion.div
                       key={index}
-                      whileHover={{ scale: 1.02 }}
-                      className="flex items-center space-x-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                      whileHover={{ scale: 1.03, x: 5 }}
+                      className="flex items-center space-x-5 p-4 rounded-2xl bg-white/5 hover:bg-white/15 transition-all duration-300 cursor-pointer border border-white/10 hover:border-white/30 glow-on-hover"
                     >
-                      <div className="text-2xl">{dest.image}</div>
+                      <motion.div 
+                        className="text-3xl"
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                      >
+                        {dest.image}
+                      </motion.div>
                       <div className="flex-1">
-                        <h4 className="font-medium">{dest.name}</h4>
-                        <div className="flex items-center space-x-2">
-                          <Star className="w-4 h-4 fill-accent text-accent" />
-                          <span className="text-sm text-gray-300">{dest.rating}</span>
+                        <h4 className="font-semibold text-lg text-white mb-1">{dest.name}</h4>
+                        <p className="text-sm text-white/70 mb-2">{dest.desc}</p>
+                        <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-1">
+                            <Star className="w-4 h-4 fill-accent text-accent" />
+                            <span className="text-sm text-accent font-medium">{dest.rating}</span>
+                          </div>
+                          <span className="text-xs text-white/50">•</span>
+                          <span className="text-xs text-white/70">3-5 days</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold text-primary-glow">{dest.price}</div>
-                        <div className="text-xs text-gray-400">per person</div>
+                        <div className="font-bold text-xl text-primary-glow">{dest.price}</div>
+                        <div className="text-xs text-white/60">per person</div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </div>
-            </Card>
+            </motion.div>
 
-            {/* AI Assistant Preview */}
-            <Card className="card-heritage bg-gradient-to-br from-royal/20 to-primary/20 backdrop-blur-lg border-white/20 text-white">
-              <div className="p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-royal flex items-center justify-center pulse-heritage">
-                    <span className="text-sm font-bold">AI</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">झारखंड AI Assistant</h4>
-                    <p className="text-xs text-gray-300">Your Jharkhand travel guide</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-200 bg-white/10 rounded-lg p-3 border border-white/20">
-                  "Perfect timing! I recommend exploring Ranchi's Rock Garden, Hundru Falls, 
-                  and Deoghar's Baidyanath Temple. The monsoon season (July-Sep) offers 
-                  spectacular waterfalls. Shall I plan your 5-day Jharkhand discovery tour?"
-                </p>
-                <Button 
-                  size="sm" 
-                  className="mt-4 w-full bg-white/20 hover:bg-white/30 text-white border border-white/30"
+            {/* Enhanced AI Assistant Preview */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="card-glass relative overflow-hidden"
+            >
+              <div className="p-8">
+                <motion.div 
+                  className="flex items-center space-x-4 mb-6"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.4, duration: 0.6 }}
                 >
-                  Start Planning with AI
-                </Button>
+                  <motion.div 
+                    className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary via-accent to-royal flex items-center justify-center pulse-heritage shadow-2xl"
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <span className="text-lg font-bold text-white">AI</span>
+                  </motion.div>
+                  <div>
+                    <h4 className="font-bold text-xl text-white">झारखंड AI Assistant</h4>
+                    <p className="text-sm text-white/70">Your personalized Jharkhand travel guide</p>
+                  </div>
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="ml-auto"
+                  >
+                    <div className="w-3 h-3 bg-green-400 rounded-full pulse-heritage"></div>
+                  </motion.div>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.6, duration: 0.6 }}
+                  className="chat-bubble-ai mb-6"
+                >
+                  <p className="text-sm leading-relaxed">
+                    "Perfect timing! I recommend exploring Ranchi's Rock Garden, Hundru Falls, 
+                    and Deoghar's Baidyanath Temple. The monsoon season (July-Sep) offers 
+                    spectacular waterfalls. Shall I plan your 5-day Jharkhand discovery tour?"
+                  </p>
+                </motion.div>
+                
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.8, duration: 0.6 }}
+                >
+                  <Button 
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-royal text-white border-0 rounded-xl font-semibold text-lg py-4 shadow-2xl transition-all duration-300"
+                  >
+                    Start Planning with AI ✨
+                  </Button>
+                </motion.div>
               </div>
-            </Card>
+            </motion.div>
           </motion.div>
         </div>
       </div>

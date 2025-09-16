@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, MapPin, Calendar, Users, Eye, Heart, Share2, Play } from 'lucide-react';
+import { Star, MapPin, Calendar, Users, Eye, Heart, Share2, Play, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -122,175 +122,247 @@ const DestinationExplorer = () => {
   return (
     <section id="destinations" className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-center mb-20"
+        >
+          <motion.div
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm px-8 py-4 rounded-full border border-primary/20 mb-8"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <span className="text-2xl">🏔️</span>
+            <span className="font-semibold text-primary">Discover Amazing Places</span>
+          </motion.div>
+          
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-8">
+            Explore
+            <span className="bg-gradient-to-r from-primary via-accent to-royal bg-clip-text text-transparent"> Beautiful Jharkhand</span>
+          </h2>
+          <motion.p 
+            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Discover Jharkhand's diverse landscapes from pristine waterfalls to spiritual temples, 
+            tribal heritage to modern industrial cities - all with immersive 360° previews and seamless booking.
+          </motion.p>
+        </motion.div>
+
+        {/* Enhanced Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
-            Explore
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Beautiful Jharkhand</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Discover Jharkhand's diverse landscapes from pristine waterfalls to spiritual temples, 
-            tribal heritage to modern industrial cities - all with immersive 360° previews and seamless booking.
-          </p>
-        </motion.div>
-
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-6">
             {categories.map((category, index) => (
               <motion.button
                 key={category.id}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center space-x-3 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
+                className={`group flex items-center space-x-4 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 ${
                   activeCategory === category.id
-                    ? 'bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-heritage)]'
-                    : 'bg-card hover:bg-muted text-foreground border border-border hover:border-primary/20'
-                }`}
+                    ? 'bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-2xl glow-on-hover'
+                    : 'bg-white/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:text-primary border-2 border-border/50 hover:border-primary/50 hover:shadow-lg'
+                } relative overflow-hidden`}
               >
-                <span className="text-xl">{category.icon}</span>
-                <span>{category.label}</span>
-                <Badge variant="secondary" className="ml-2">
-                  {category.count}
-                </Badge>
+                {/* Shimmer effect for active state */}
+                {activeCategory === category.id && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+                )}
+                
+                <motion.span 
+                  className="text-2xl group-hover:scale-110 transition-transform duration-300"
+                  animate={activeCategory === category.id ? { rotate: [0, 10, -10, 0] } : {}}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {category.icon}
+                </motion.span>
+                <div className="text-left">
+                  <span className="block text-lg">{category.label}</span>
+                  <Badge 
+                    variant={activeCategory === category.id ? "secondary" : "outline"} 
+                    className={`mt-1 ${activeCategory === category.id ? 'bg-white/20 text-white border-white/30' : ''}`}
+                  >
+                    {category.count} places
+                  </Badge>
+                </div>
               </motion.button>
             ))}
           </div>
         </motion.div>
 
-        {/* Destinations Grid */}
+        {/* Enhanced Destinations Grid */}
         <motion.div
           layout
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
         >
           {(destinations[activeCategory as keyof typeof destinations] || destinations.waterfalls).map((destination, index) => (
             <motion.div
               key={destination.id}
               layout
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 80, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="group"
             >
-              <Card className="card-heritage overflow-hidden group cursor-pointer">
-                {/* Image Container */}
-                <div className="relative h-64 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden">
-                  <div className="text-8xl group-hover:scale-110 transition-transform duration-500">
+              <Card className="card-featured overflow-hidden group cursor-pointer relative">
+                {/* Enhanced Image Container */}
+                <div className="relative h-72 bg-gradient-to-br from-primary/20 via-accent/20 to-royal/20 flex items-center justify-center overflow-hidden">
+                  <motion.div 
+                    className="text-9xl group-hover:scale-125 transition-all duration-700 ease-out"
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
+                  >
                     {destination.image}
-                  </div>
+                  </motion.div>
                   
-                  {/* Overlay Actions */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center space-x-4">
-                    <Button
-                      size="sm"
-                      className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30"
+                  {/* Enhanced Overlay Actions */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center space-x-4"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 }}
                     >
-                      <Eye className="w-4 h-4 mr-2" />
-                      360° View
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30"
+                      <Button
+                        size="sm"
+                        className="bg-white/20 backdrop-blur-lg hover:bg-white/30 text-white border border-white/30 rounded-xl px-4 py-3 font-semibold shadow-2xl"
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        360° View
+                      </Button>
+                    </motion.div>
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.2 }}
                     >
-                      <Play className="w-4 h-4 mr-2" />
-                      AR Preview
-                    </Button>
-                  </div>
+                      <Button
+                        size="sm"
+                        className="bg-white/20 backdrop-blur-lg hover:bg-white/30 text-white border border-white/30 rounded-xl px-4 py-3 font-semibold shadow-2xl"
+                      >
+                        <Play className="w-4 h-4 mr-2" />
+                        AR Preview
+                      </Button>
+                    </motion.div>
+                  </motion.div>
 
-                  {/* Action Buttons */}
-                  <div className="absolute top-4 right-4 flex space-x-2">
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-2"
+                  {/* Enhanced Action Buttons */}
+                  <div className="absolute top-6 right-6 flex space-x-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-[-10px] group-hover:translate-y-0">
+                    <motion.button
+                      className="bg-white/90 backdrop-blur-sm p-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 shadow-xl glow-on-hover"
+                      whileHover={{ scale: 1.1, rotate: 15 }}
+                      whileTap={{ scale: 0.9 }}
                       onClick={(e) => {
                         e.stopPropagation();
                         toggleFavorite(destination.id);
                       }}
                     >
-                      <Heart className={`w-4 h-4 ${favorites.includes(destination.id) ? 'fill-red-500 text-red-500' : ''}`} />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-2"
+                      <Heart className={`w-5 h-5 ${favorites.includes(destination.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                    </motion.button>
+                    <motion.button
+                      className="bg-white/90 backdrop-blur-sm p-3 rounded-full hover:bg-accent hover:text-white transition-all duration-300 shadow-xl glow-on-hover"
+                      whileHover={{ scale: 1.1, rotate: -15 }}
+                      whileTap={{ scale: 0.9 }}
                     >
-                      <Share2 className="w-4 h-4" />
-                    </Button>
+                      <Share2 className="w-5 h-5" />
+                    </motion.button>
                   </div>
 
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-primary text-primary-foreground font-medium">
+                  {/* Enhanced Category Badge */}
+                  <div className="absolute top-6 left-6">
+                    <Badge className="bg-gradient-to-r from-primary to-accent text-white font-semibold px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
                       {destination.category}
                     </Badge>
                   </div>
+
+                  {/* Enhanced Rating Badge */}
+                  <div className="absolute bottom-6 left-6">
+                    <div className="bg-white/90 backdrop-blur-lg px-4 py-2 rounded-full flex items-center space-x-2 shadow-xl">
+                      <Star className="w-5 h-5 fill-accent text-accent" />
+                      <span className="text-lg font-bold text-foreground">{destination.rating}</span>
+                      <span className="text-sm text-muted-foreground">({destination.reviews.toLocaleString()})</span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-4">
+                {/* Enhanced Content */}
+                <div className="p-8 space-y-6">
                   <div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">
+                    <motion.h3 
+                      className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300"
+                      whileHover={{ x: 5 }}
+                    >
                       {destination.name}
-                    </h3>
-                    <div className="flex items-center space-x-2 text-muted-foreground mb-3">
-                      <MapPin className="w-4 h-4" />
-                      <span className="text-sm">{destination.state}</span>
+                    </motion.h3>
+                    <div className="flex items-center space-x-2 text-muted-foreground mb-4">
+                      <MapPin className="w-5 h-5" />
+                      <span className="text-lg font-medium">{destination.state}</span>
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed text-lg">
                       {destination.description}
                     </p>
                   </div>
 
-                  {/* Rating and Reviews */}
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 fill-accent text-accent" />
-                      <span className="font-semibold text-foreground">{destination.rating}</span>
-                      <span className="text-sm text-muted-foreground">({destination.reviews.toLocaleString()})</span>
-                    </div>
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="flex flex-wrap gap-2">
+                  {/* Enhanced Highlights */}
+                  <div className="flex flex-wrap gap-3">
                     {destination.highlights.map((highlight, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {highlight}
-                      </Badge>
+                      <motion.div
+                        key={idx}
+                        whileHover={{ scale: 1.05 }}
+                        className="cursor-pointer"
+                      >
+                        <Badge 
+                          variant="outline" 
+                          className="px-3 py-1 text-sm font-medium hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                        >
+                          {highlight}
+                        </Badge>
+                      </motion.div>
                     ))}
                   </div>
 
-                  {/* Details */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4 text-primary" />
-                      <span className="text-muted-foreground">{destination.duration}</span>
+                  {/* Enhanced Details */}
+                  <div className="grid grid-cols-2 gap-6 text-base">
+                    <div className="flex items-center space-x-3">
+                      <Calendar className="w-5 h-5 text-primary" />
+                      <span className="text-muted-foreground font-medium">{destination.duration}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Users className="w-4 h-4 text-royal" />
-                      <span className="text-muted-foreground">{destination.bestTime}</span>
+                    <div className="flex items-center space-x-3">
+                      <Users className="w-5 h-5 text-royal" />
+                      <span className="text-muted-foreground font-medium">{destination.bestTime}</span>
                     </div>
                   </div>
 
-                  {/* Price and Book Button */}
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                  {/* Enhanced Price and Book Button */}
+                  <div className="flex items-center justify-between pt-6 border-t border-border">
                     <div>
-                      <span className="text-2xl font-bold text-primary">{destination.price}</span>
-                      <span className="text-sm text-muted-foreground ml-1">per person</span>
+                      <span className="text-3xl font-bold gradient-text">{destination.price}</span>
+                      <span className="text-base text-muted-foreground ml-2">per person</span>
                     </div>
-                    <Button className="btn-heritage">
-                      Book Now
-                    </Button>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button className="btn-heritage px-8 py-3 text-lg font-bold shadow-xl">
+                        Book Now
+                      </Button>
+                    </motion.div>
                   </div>
                 </div>
               </Card>
@@ -298,16 +370,27 @@ const DestinationExplorer = () => {
           ))}
         </motion.div>
 
-        {/* Load More */}
+        {/* Enhanced Load More */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-12"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="text-center mt-16"
         >
-          <Button variant="outline" size="lg" className="px-8 py-3 text-lg">
-            Load More Destinations
-          </Button>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-12 py-4 text-lg font-semibold border-2 border-primary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded-2xl shadow-lg hover:shadow-2xl"
+            >
+              <span className="mr-3">🔍</span>
+              Discover More Destinations
+              <ArrowRight className="w-5 h-5 ml-3" />
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
     </section>

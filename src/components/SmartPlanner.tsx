@@ -43,24 +43,35 @@ const SmartPlanner = () => {
     <section id="plan" className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 1 }}
+          className="text-center mb-20"
         >
-          <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-royal flex items-center justify-center pulse-heritage">
+          <motion.div
+            className="inline-flex items-center space-x-4 bg-gradient-to-r from-royal/20 to-primary/20 backdrop-blur-sm px-8 py-4 rounded-full border border-primary/30 mb-8"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-royal flex items-center justify-center pulse-heritage shadow-xl">
               <Bot className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-6xl font-bold text-foreground">
-              AI Travel
-              <span className="bg-gradient-to-r from-royal to-accent bg-clip-text text-transparent"> Planner</span>
-            </h2>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <span className="text-xl font-semibold gradient-text">AI-Powered Planning</span>
+          </motion.div>
+          
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-8">
+            Smart Travel
+            <span className="bg-gradient-to-r from-royal via-primary to-accent bg-clip-text text-transparent"> Planner</span>
+          </h2>
+          <motion.p 
+            className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
             Let our AI create the perfect itinerary for you. Just tell us your preferences, 
             and we'll handle the rest with smart recommendations and seamless booking.
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
