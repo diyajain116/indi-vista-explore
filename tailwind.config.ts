@@ -23,6 +23,7 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           glow: "hsl(var(--primary-glow))",
+          deep: "hsl(var(--primary-deep))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -31,6 +32,10 @@ export default {
         royal: {
           DEFAULT: "hsl(var(--royal))",
           foreground: "hsl(var(--royal-foreground))",
+        },
+        sunset: {
+          DEFAULT: "hsl(var(--sunset))",
+          foreground: "hsl(var(--sunset-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -70,25 +75,39 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "gradient-flow": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "breath": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+        },
+        "levitate": {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "25%": { transform: "translateY(-10px) rotate(1deg)" },
+          "50%": { transform: "translateY(-15px) rotate(0deg)" },
+          "75%": { transform: "translateY(-5px) rotate(-1deg)" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "gradient-flow": "gradient-flow 3s ease-in-out infinite",
+        "breath": "breath 4s ease-in-out infinite",
+        "levitate": "levitate 6s ease-in-out infinite",
+        "shimmer": "shimmer 2s infinite",
       },
     },
   },

@@ -130,17 +130,17 @@ const DestinationExplorer = () => {
           className="text-center mb-20"
         >
           <motion.div
-            className="inline-flex items-center space-x-3 bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm px-8 py-4 rounded-full border border-primary/20 mb-8"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="inline-flex items-center space-x-4 bg-gradient-to-r from-primary/20 via-accent/15 to-royal/20 backdrop-blur-xl px-10 py-5 rounded-full border-2 border-primary/30 mb-12 shadow-[var(--shadow-primary)] animate-levitate"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-2xl">🏔️</span>
-            <span className="font-semibold text-primary">Discover Amazing Places</span>
+            <span className="text-3xl animate-breath">🌿</span>
+            <span className="font-bold text-xl gradient-text">Discover Amazing Places</span>
           </motion.div>
           
-          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-8">
+          <h2 className="text-5xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-10">
             Explore
-            <span className="bg-gradient-to-r from-primary via-accent to-royal bg-clip-text text-transparent"> Beautiful Jharkhand</span>
+            <span className="gradient-text animate-gradient-flow"> Beautiful Jharkhand</span>
           </h2>
           <motion.p 
             className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
@@ -170,10 +170,10 @@ const DestinationExplorer = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 onClick={() => setActiveCategory(category.id)}
-                className={`group flex items-center space-x-4 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 ${
+                className={`group flex items-center space-x-4 px-10 py-6 rounded-3xl font-bold transition-all duration-500 magnetic-hover ${
                   activeCategory === category.id
-                    ? 'bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-2xl glow-on-hover'
-                    : 'bg-white/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:text-primary border-2 border-border/50 hover:border-primary/50 hover:shadow-lg'
+                    ? 'bg-gradient-to-br from-primary via-primary-glow to-accent text-primary-foreground shadow-[var(--shadow-primary)] animate-breath border-2 border-primary/50'
+                    : 'bg-gradient-to-br from-card to-muted/50 text-foreground hover:from-primary/10 hover:to-accent/10 hover:text-primary border-2 border-border hover:border-primary/50 hover:shadow-[var(--shadow-elevation-2)]'
                 } relative overflow-hidden`}
               >
                 {/* Shimmer effect for active state */}
@@ -217,13 +217,13 @@ const DestinationExplorer = () => {
               whileHover={{ y: -15, scale: 1.02 }}
               className="group"
             >
-              <Card className="card-featured overflow-hidden group cursor-pointer relative">
+              <Card className="card-premium overflow-hidden group cursor-pointer relative animate-levitate" style={{ animationDelay: `${index * 0.3}s` }}>
                 {/* Enhanced Image Container */}
-                <div className="relative h-72 bg-gradient-to-br from-primary/20 via-accent/20 to-royal/20 flex items-center justify-center overflow-hidden">
+                <div className="relative h-80 bg-gradient-to-br from-primary/30 via-accent/25 to-royal/30 flex items-center justify-center overflow-hidden forest-pattern">
                   <motion.div 
-                    className="text-9xl group-hover:scale-125 transition-all duration-700 ease-out"
-                    animate={{ rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
+                    className="text-9xl group-hover:scale-125 transition-all duration-1000 ease-out filter drop-shadow-2xl animate-breath"
+                    animate={{ rotate: [0, 8, -8, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, delay: index * 0.7 }}
                   >
                     {destination.image}
                   </motion.div>
@@ -241,7 +241,7 @@ const DestinationExplorer = () => {
                     >
                       <Button
                         size="sm"
-                        className="bg-white/20 backdrop-blur-lg hover:bg-white/30 text-white border border-white/30 rounded-xl px-4 py-3 font-semibold shadow-2xl"
+                        className="btn-glass"
                       >
                         <Eye className="w-4 h-4 mr-2" />
                         360° View
@@ -254,7 +254,7 @@ const DestinationExplorer = () => {
                     >
                       <Button
                         size="sm"
-                        className="bg-white/20 backdrop-blur-lg hover:bg-white/30 text-white border border-white/30 rounded-xl px-4 py-3 font-semibold shadow-2xl"
+                        className="btn-glass"
                       >
                         <Play className="w-4 h-4 mr-2" />
                         AR Preview
@@ -286,17 +286,17 @@ const DestinationExplorer = () => {
 
                   {/* Enhanced Category Badge */}
                   <div className="absolute top-6 left-6">
-                    <Badge className="bg-gradient-to-r from-primary to-accent text-white font-semibold px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
+                    <Badge className="bg-gradient-to-r from-primary via-primary-glow to-accent text-white font-bold px-5 py-3 rounded-2xl shadow-[var(--shadow-primary)] backdrop-blur-lg border-2 border-white/30 animate-shimmer">
                       {destination.category}
                     </Badge>
                   </div>
 
                   {/* Enhanced Rating Badge */}
                   <div className="absolute bottom-6 left-6">
-                    <div className="bg-white/90 backdrop-blur-lg px-4 py-2 rounded-full flex items-center space-x-2 shadow-xl">
-                      <Star className="w-5 h-5 fill-accent text-accent" />
-                      <span className="text-lg font-bold text-foreground">{destination.rating}</span>
-                      <span className="text-sm text-muted-foreground">({destination.reviews.toLocaleString()})</span>
+                    <div className="bg-white/95 backdrop-blur-xl px-5 py-3 rounded-2xl flex items-center space-x-3 shadow-[var(--shadow-elevation-2)] border border-white/20">
+                      <Star className="w-6 h-6 fill-accent text-accent animate-pulse" />
+                      <span className="text-xl font-bold text-foreground">{destination.rating}</span>
+                      <span className="text-sm text-muted-foreground font-medium">({destination.reviews.toLocaleString()})</span>
                     </div>
                   </div>
                 </div>
@@ -352,14 +352,14 @@ const DestinationExplorer = () => {
                   {/* Enhanced Price and Book Button */}
                   <div className="flex items-center justify-between pt-6 border-t border-border">
                     <div>
-                      <span className="text-3xl font-bold gradient-text">{destination.price}</span>
-                      <span className="text-base text-muted-foreground ml-2">per person</span>
+                      <span className="text-4xl font-bold gradient-text-sunset animate-gradient-flow">{destination.price}</span>
+                      <span className="text-lg text-muted-foreground ml-3 font-medium">per person</span>
                     </div>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Button className="btn-heritage px-8 py-3 text-lg font-bold shadow-xl">
+                      <Button className="btn-sunset animate-breath">
                         Book Now
                       </Button>
                     </motion.div>

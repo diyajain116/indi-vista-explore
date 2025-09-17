@@ -129,7 +129,7 @@ const HeroSection = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Button className="btn-heritage px-10 py-4 text-lg font-bold whitespace-nowrap shadow-2xl">
+                      <Button className="btn-heritage whitespace-nowrap animate-breath">
                         <Search className="w-6 h-6 mr-3" />
                         Explore Now
                       </Button>
@@ -290,10 +290,7 @@ const HeroSection = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.8, duration: 0.6 }}
                 >
-                  <Button 
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-royal text-white border-0 rounded-xl font-semibold text-lg py-4 shadow-2xl transition-all duration-300"
-                  >
+                  <Button className="w-full btn-sunset animate-levitate">
                     Start Planning with AI ✨
                   </Button>
                 </motion.div>

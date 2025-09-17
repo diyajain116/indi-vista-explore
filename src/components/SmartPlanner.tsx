@@ -49,19 +49,19 @@ const SmartPlanner = () => {
           className="text-center mb-20"
         >
           <motion.div
-            className="inline-flex items-center space-x-4 bg-gradient-to-r from-royal/20 to-primary/20 backdrop-blur-sm px-8 py-4 rounded-full border border-primary/30 mb-8"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="inline-flex items-center space-x-4 bg-gradient-to-r from-royal/30 via-primary/25 to-accent/30 backdrop-blur-xl px-10 py-5 rounded-full border-2 border-primary/40 mb-12 shadow-[var(--shadow-royal)] animate-levitate"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-royal flex items-center justify-center pulse-heritage shadow-xl">
-              <Bot className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary via-accent to-royal flex items-center justify-center pulse-heritage shadow-2xl animate-breath">
+              <Bot className="w-7 h-7 text-white" />
             </div>
-            <span className="text-xl font-semibold gradient-text">AI-Powered Planning</span>
+            <span className="text-2xl font-bold gradient-text-royal">AI-Powered Planning</span>
           </motion.div>
           
-          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-8">
+          <h2 className="text-5xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-10">
             Smart Travel
-            <span className="bg-gradient-to-r from-royal via-primary to-accent bg-clip-text text-transparent"> Planner</span>
+            <span className="gradient-text animate-gradient-flow"> Planner</span>
           </h2>
           <motion.p 
             className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
@@ -81,38 +81,43 @@ const SmartPlanner = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <Card className="card-heritage p-8">
+            <Card className="card-premium">
               {/* Progress Steps */}
-              <div className="mb-8">
-                <div className="flex items-center justify-between mb-6">
+              <div className="mb-10">
+                <div className="flex items-center justify-between mb-8">
                   {steps.map((step, index) => (
                     <div
                       key={index}
-                      className={`flex flex-col items-center space-y-2 ${
+                      className={`flex flex-col items-center space-y-3 ${
                         index <= currentStep ? 'text-primary' : 'text-muted-foreground'
                       }`}
                     >
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                        index < currentStep 
-                          ? 'bg-primary border-primary text-primary-foreground' 
-                          : index === currentStep 
-                            ? 'border-primary text-primary' 
-                            : 'border-muted-foreground'
-                      }`}>
+                      <motion.div 
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
+                          index < currentStep 
+                            ? 'bg-gradient-to-br from-primary to-accent border-primary text-white shadow-[var(--shadow-primary)] animate-pulse' 
+                            : index === currentStep 
+                              ? 'border-primary text-primary bg-primary/10 animate-breath' 
+                              : 'border-muted-foreground bg-muted/50'
+                        }`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
                         {index < currentStep ? (
-                          <CheckCircle className="w-5 h-5" />
+                          <CheckCircle className="w-6 h-6" />
                         ) : (
-                          <step.icon className="w-5 h-5" />
+                          <step.icon className="w-6 h-6" />
                         )}
-                      </div>
-                      <span className="text-xs font-medium hidden sm:block">{step.title}</span>
+                      </motion.div>
+                      <span className="text-sm font-bold hidden sm:block">{step.title}</span>
                     </div>
                   ))}
                 </div>
-                <div className="h-1 bg-muted rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-primary to-primary-glow transition-all duration-500"
-                    style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+                <div className="h-2 bg-muted/50 rounded-full overflow-hidden backdrop-blur-sm">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-primary via-accent to-royal transition-all duration-700 rounded-full shadow-lg"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
                   />
                 </div>
               </div>
@@ -128,15 +133,15 @@ const SmartPlanner = () => {
                     <h3 className="text-xl font-semibold text-foreground">Where would you like to explore in Jharkhand?</h3>
                     <Input
                       placeholder="e.g., Ranchi, Deoghar, Jamshedpur, Hazaribagh..."
-                      className="text-lg py-3"
+                      className="input-premium"
                     />
                     <div className="grid grid-cols-2 gap-3">
                       {['Ranchi', 'Deoghar', 'Jamshedpur', 'Hazaribagh', 'Dhanbad', 'Bokaro'].map((city) => (
-                        <Button
-                          key={city}
-                          variant="outline"
-                          className="justify-start hover:bg-primary hover:text-primary-foreground"
-                        >
+                          <Button
+                            key={city}
+                            variant="outline"
+                            className="justify-start hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-white transition-all duration-300 border-2 border-border hover:border-primary/50 font-medium magnetic-hover"
+                          >
                           {city}
                         </Button>
                       ))}
@@ -293,14 +298,14 @@ const SmartPlanner = () => {
                   
                   {currentStep < steps.length - 1 ? (
                     <Button
-                      className="btn-heritage"
+                      className="btn-royal animate-breath"
                       onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
                     >
                       Next <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   ) : (
                     <Button
-                      className="btn-royal px-8"
+                      className="btn-sunset animate-levitate"
                       onClick={handleGenerateItinerary}
                       disabled={isGenerating}
                     >
@@ -330,16 +335,16 @@ const SmartPlanner = () => {
             className="space-y-6"
           >
             {/* AI Chat Interface */}
-            <Card className="card-heritage p-6">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-royal to-primary flex items-center justify-center pulse-heritage">
-                  <Bot className="w-5 h-5 text-white" />
+            <Card className="card-glass">
+              <div className="flex items-center space-x-4 mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal via-primary to-accent flex items-center justify-center pulse-heritage shadow-2xl animate-breath">
+                  <Bot className="w-6 h-6 text-white" />
                 </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">झारखंड AI Assistant</h4>
-                    <p className="text-sm text-muted-foreground">Jharkhand travel planning help</p>
+                    <h4 className="font-bold text-xl text-white">झारखंड AI Assistant</h4>
+                    <p className="text-white/70 font-medium">Jharkhand travel planning help</p>
                   </div>
-                <Badge className="ml-auto bg-green-100 text-green-800">Online</Badge>
+                <Badge className="ml-auto bg-green-500/20 text-green-400 border border-green-500/30 animate-pulse">Online</Badge>
               </div>
 
               <div className="space-y-4 max-h-80 overflow-y-auto">

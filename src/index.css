@@ -8,57 +8,71 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Heritage Indian Tourism Colors */
-    --background: 32 100% 98%;
-    --foreground: 25 15% 15%;
+    /* Premium Jharkhand Tourism Colors - Enhanced */
+    --background: 210 100% 98%;
+    --foreground: 215 25% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 25 15% 15%;
+    --card-foreground: 215 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 15% 15%;
+    --popover-foreground: 215 25% 12%;
 
-    /* Rajasthan Royal Orange */
-    --primary: 25 95% 53%;
+    /* Emerald Forest Primary (Jharkhand's rich forests) */
+    --primary: 158 64% 52%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 35 100% 65%;
+    --primary-glow: 168 76% 42%;
+    --primary-deep: 148 54% 42%;
 
-    /* Desert Sand Secondary */
-    --secondary: 45 25% 88%;
-    --secondary-foreground: 25 15% 15%;
+    /* Warm Earth Secondary (mineral-rich soil) */
+    --secondary: 28 76% 67%;
+    --secondary-foreground: 215 25% 12%;
 
-    /* Warm Neutral Tones */
-    --muted: 45 15% 92%;
-    --muted-foreground: 25 8% 45%;
+    /* Refined Neutrals */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 46%;
 
-    /* Golden Accent */
-    --accent: 45 98% 65%;
-    --accent-foreground: 25 15% 15%;
+    /* Golden Marigold Accent (cultural significance) */
+    --accent: 45 93% 58%;
+    --accent-foreground: 215 25% 12%;
 
-    /* Royal Blue for CTAs */
-    --royal: 220 70% 50%;
+    /* Deep Royal Blue (tribal heritage) */
+    --royal: 230 65% 45%;
     --royal-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    /* Sunset Orange (waterfalls at golden hour) */
+    --sunset: 25 95% 63%;
+    --sunset-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 45 20% 85%;
-    --input: 45 20% 85%;
-    --ring: 25 95% 53%;
+    --border: 210 40% 90%;
+    --input: 210 40% 94%;
+    --ring: 158 64% 52%;
 
-    /* Cultural Gradients */
-    --gradient-sunset: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)), hsl(var(--accent)));
-    --gradient-heritage: linear-gradient(180deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.05));
-    --gradient-royal: linear-gradient(135deg, hsl(var(--royal)), hsl(220 80% 60%));
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)), hsl(var(--accent)));
+    --gradient-sunset: linear-gradient(135deg, hsl(var(--sunset)), hsl(var(--accent)), hsl(var(--primary-glow)));
+    --gradient-forest: linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--primary-deep)) 100%);
+    --gradient-royal: linear-gradient(135deg, hsl(var(--royal)), hsl(230 75% 55%));
+    --gradient-earth: linear-gradient(135deg, hsl(var(--secondary)), hsl(28 86% 77%));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--primary) / 0.8), hsl(var(--royal) / 0.6));
     
-    /* Shadows with Cultural Warmth */
-    --shadow-heritage: 0 10px 30px -10px hsl(var(--primary) / 0.3);
-    --shadow-royal: 0 8px 25px -8px hsl(var(--royal) / 0.4);
-    --shadow-warm: 0 4px 20px -4px hsl(45 50% 70% / 0.3);
+    /* Premium Shadows */
+    --shadow-primary: 0 25px 60px -12px hsl(var(--primary) / 0.25);
+    --shadow-royal: 0 20px 50px -10px hsl(var(--royal) / 0.3);
+    --shadow-warm: 0 15px 40px -8px hsl(var(--secondary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    --shadow-elevation-1: 0 1px 3px hsl(0 0% 0% / 0.12), 0 1px 2px hsl(0 0% 0% / 0.24);
+    --shadow-elevation-2: 0 3px 6px hsl(0 0% 0% / 0.15), 0 2px 4px hsl(0 0% 0% / 0.12);
+    --shadow-elevation-3: 0 10px 20px hsl(0 0% 0% / 0.15), 0 3px 6px hsl(0 0% 0% / 0.10);
 
-    /* Animation Timing */
+    /* Enhanced Animation Curves */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-spring: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --radius: 0.5rem;
 
@@ -129,58 +143,98 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Enhanced Button Variants */
+  /* Premium Button Variants */
   .btn-heritage {
-    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground px-8 py-4 rounded-xl font-semibold tracking-wide;
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-[var(--shadow-heritage)] transform;
-    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-white/20 before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full;
+    @apply bg-gradient-to-r from-primary via-primary-glow to-accent text-primary-foreground px-10 py-5 rounded-2xl font-bold tracking-wide text-lg;
+    @apply transition-all duration-500 hover:scale-110 hover:shadow-[var(--shadow-primary)] transform;
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-white/30 before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-1000 hover:before:translate-x-full;
+    @apply after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-500;
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.2);
   }
   
   .btn-royal {
-    @apply bg-gradient-to-r from-royal to-[hsl(220_80%_60%)] text-royal-foreground px-8 py-4 rounded-xl font-semibold;
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-[var(--shadow-royal)] transform;
-    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-white/20 before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full;
+    @apply bg-gradient-to-br from-royal via-[hsl(230_75%_55%)] to-[hsl(240_85%_65%)] text-royal-foreground px-10 py-5 rounded-2xl font-bold text-lg;
+    @apply transition-all duration-500 hover:scale-110 hover:shadow-[var(--shadow-royal)] transform hover:rotate-1;
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-white/25 before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-1000 hover:before:translate-x-full;
+    box-shadow: 0 8px 32px hsl(var(--royal) / 0.4), inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+
+  .btn-sunset {
+    @apply bg-gradient-to-r from-sunset to-accent text-sunset-foreground px-10 py-5 rounded-2xl font-bold text-lg;
+    @apply transition-all duration-500 hover:scale-110 hover:shadow-[var(--shadow-warm)] transform hover:-rotate-1;
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-white/25 before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-1000 hover:before:translate-x-full;
+    box-shadow: 0 8px 32px hsl(var(--sunset) / 0.4), inset 0 1px 0 hsl(0 0% 100% / 0.2);
   }
   
-  .btn-ghost-heritage {
-    @apply border-2 border-primary text-primary bg-transparent px-8 py-4 rounded-xl font-semibold;
-    @apply transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 transform;
-    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full;
+  .btn-glass {
+    @apply backdrop-blur-xl bg-white/10 border-2 border-white/30 text-white px-10 py-5 rounded-2xl font-bold text-lg;
+    @apply transition-all duration-500 hover:bg-white/20 hover:scale-110 hover:shadow-[var(--shadow-glow)] transform;
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-1000 hover:before:translate-x-full;
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.2);
   }
 
-  /* Enhanced Card Components */
-  .card-heritage {
-    @apply bg-card/90 backdrop-blur-lg border border-border/50 rounded-2xl p-6;
-    @apply shadow-[var(--shadow-warm)] transition-all duration-500 hover:shadow-[var(--shadow-heritage)] hover:scale-[1.02] hover:-translate-y-2;
-    @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:to-transparent before:rounded-2xl before:pointer-events-none;
-    @apply relative;
-  }
-
-  .card-glass {
-    @apply bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6;
-    @apply shadow-2xl transition-all duration-500 hover:bg-white/15 hover:shadow-[var(--shadow-heritage)] hover:scale-[1.02];
+  /* Premium Card Components */
+  .card-premium {
+    @apply bg-gradient-to-br from-card via-card to-muted backdrop-blur-xl border border-border/50 rounded-3xl p-8;
+    @apply shadow-[var(--shadow-elevation-2)] transition-all duration-700 hover:shadow-[var(--shadow-primary)] hover:scale-[1.03] hover:-translate-y-3;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-primary/5 before:rounded-3xl before:pointer-events-none before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;
     @apply relative overflow-hidden;
   }
 
+  .card-glass {
+    @apply bg-white/5 backdrop-blur-2xl border-2 border-white/20 rounded-3xl p-8;
+    @apply shadow-[var(--shadow-glow)] transition-all duration-700 hover:bg-white/10 hover:shadow-[0_0_80px_hsl(var(--primary-glow)_/_0.6)] hover:scale-[1.05];
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-primary-glow/20 before:rounded-3xl before:pointer-events-none before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-700;
+    box-shadow: 
+      0 0 40px hsl(var(--primary-glow) / 0.3),
+      inset 0 1px 0 hsl(0 0% 100% / 0.2),
+      inset 0 -1px 0 hsl(0 0% 0% / 0.1);
+  }
+
   .card-featured {
-    @apply bg-gradient-to-br from-primary/10 via-white/5 to-accent/10 backdrop-blur-lg border border-primary/20 rounded-2xl p-6;
-    @apply shadow-[var(--shadow-heritage)] transition-all duration-500 hover:shadow-2xl hover:scale-[1.03] hover:-translate-y-1;
-    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;
+    @apply bg-gradient-to-br from-primary/15 via-accent/10 to-royal/15 backdrop-blur-xl border-2 border-primary/30 rounded-3xl p-8;
+    @apply shadow-[var(--shadow-primary)] transition-all duration-700 hover:shadow-[var(--shadow-glow)] hover:scale-[1.05] hover:-translate-y-2 hover:rotate-1;
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:transform before:-skew-x-12 before:-translate-x-full before:transition-transform before:duration-1000 hover:before:translate-x-full;
+    @apply after:absolute after:top-0 after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-primary after:via-accent after:to-royal;
+  }
+
+  .card-destination {
+    @apply bg-gradient-to-br from-card to-muted/50 backdrop-blur-lg border border-border/30 rounded-2xl overflow-hidden;
+    @apply shadow-[var(--shadow-elevation-1)] transition-all duration-500 hover:shadow-[var(--shadow-elevation-3)] hover:scale-[1.02] hover:-translate-y-1;
+    @apply relative group cursor-pointer;
   }
 
   /* Interactive Elements */
   .interactive-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer;
+    @apply transition-all duration-500 hover:scale-110 hover:-translate-y-2 cursor-pointer;
   }
 
   .glow-on-hover {
-    @apply transition-all duration-300 hover:shadow-[var(--shadow-heritage)] hover:shadow-2xl;
+    @apply transition-all duration-500 hover:shadow-[var(--shadow-glow)] hover:shadow-2xl;
+  }
+
+  .magnetic-hover {
+    @apply transition-all duration-300 hover:scale-105 cursor-pointer;
+    transform-origin: center;
+  }
+
+  .magnetic-hover:hover {
+    filter: brightness(1.1) contrast(1.05);
   }
   
   .cultural-pattern {
-    background-image: radial-gradient(circle at 25% 25%, hsl(var(--accent) / 0.15) 0%, transparent 50%),
-                      radial-gradient(circle at 75% 75%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 50% 50%, hsl(var(--royal) / 0.05) 0%, transparent 70%);
+    background-image: 
+      radial-gradient(circle at 20% 20%, hsl(var(--accent) / 0.2) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, hsl(var(--primary) / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, hsl(var(--royal) / 0.1) 0%, transparent 60%),
+      radial-gradient(circle at 60% 40%, hsl(var(--sunset) / 0.08) 0%, transparent 70%);
+  }
+
+  .forest-pattern {
+    background-image: 
+      radial-gradient(ellipse at 30% 70%, hsl(var(--primary) / 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, hsl(var(--primary-glow) / 0.2) 0%, transparent 60%),
+      linear-gradient(135deg, transparent 30%, hsl(var(--primary) / 0.05) 50%, transparent 70%);
   }
 
   /* Enhanced Heritage Animations */
@@ -223,20 +277,35 @@ All colors MUST be HSL.
     animation: shimmer 2s infinite;
   }
 
-  /* Gradient Text */
+  /* Premium Typography */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-royal bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent;
+    background-size: 200% 100%;
+    animation: gradient-flow 3s ease-in-out infinite;
   }
 
-  .gradient-text-secondary {
-    @apply bg-gradient-to-r from-accent via-primary-glow to-primary bg-clip-text text-transparent;
+  .gradient-text-sunset {
+    @apply bg-gradient-to-r from-sunset via-accent to-primary bg-clip-text text-transparent;
+    background-size: 200% 100%;
+    animation: gradient-flow 4s ease-in-out infinite reverse;
+  }
+
+  .gradient-text-royal {
+    @apply bg-gradient-to-r from-royal via-primary to-accent bg-clip-text text-transparent;
   }
 
   /* Enhanced Input Styles */
   .input-heritage {
-    @apply bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-xl px-4 py-3;
-    @apply focus:border-primary/50 focus:bg-white/20 transition-all duration-300;
-    @apply placeholder:text-gray-400;
+    @apply bg-white/5 backdrop-blur-xl border-2 border-white/30 rounded-2xl px-6 py-4 text-lg;
+    @apply focus:border-primary/70 focus:bg-white/10 focus:shadow-[var(--shadow-glow)] transition-all duration-500;
+    @apply placeholder:text-white/60;
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.1), 0 1px 3px hsl(0 0% 0% / 0.1);
+  }
+
+  .input-premium {
+    @apply bg-gradient-to-r from-card to-muted/50 border-2 border-border/50 rounded-2xl px-6 py-4 text-lg;
+    @apply focus:border-primary focus:shadow-[var(--shadow-primary)] focus:scale-[1.02] transition-all duration-300;
+    @apply placeholder:text-muted-foreground/70;
   }
 
   /* Chat Bubble Styles */
@@ -304,6 +373,23 @@ All colors MUST be HSL.
 @keyframes sparkle {
   0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
   50% { opacity: 0.5; transform: scale(1.2) rotate(180deg); }
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes breath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes levitate {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(-15px) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-1deg); }
 }
 
 @keyframes shimmer {
