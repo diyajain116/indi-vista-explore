@@ -101,37 +101,39 @@ const HeroSection = () => {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="card-glass relative overflow-hidden"
               >
-                <div className="flex flex-col sm:flex-row gap-6">
+                <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
                   <motion.div 
-                    className="flex-1"
+                    className="flex-1 min-w-0"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <label className="block text-sm font-semibold text-white/90 mb-3">Where to explore? 🗺️</label>
+                    <label className="block text-sm font-semibold text-white/90 mb-2 truncate">Where to explore? 🗺️</label>
                     <Input
-                      placeholder="Ranchi, Jamshedpur, Deoghar, Hazaribagh..."
-                      className="input-heritage text-white placeholder:text-white/60 text-lg py-4"
+                      placeholder="Ranchi, Deoghar..."
+                      className="input-heritage text-white placeholder:text-white/60 text-base lg:text-lg py-3 lg:py-4 w-full"
                     />
                   </motion.div>
                   <motion.div 
-                    className="flex-1"
+                    className="flex-1 min-w-0"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <label className="block text-sm font-semibold text-white/90 mb-3">When? 📅</label>
+                    <label className="block text-sm font-semibold text-white/90 mb-2 truncate">When? 📅</label>
                     <Input
                       type="date"
-                      className="input-heritage text-white text-lg py-4"
+                      className="input-heritage text-white text-base lg:text-lg py-3 lg:py-4 w-full"
                     />
                   </motion.div>
-                  <div className="flex items-end">
+                  <div className="flex items-end w-full lg:w-auto">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
+                      className="w-full lg:w-auto"
                     >
-                      <Button className="btn-heritage whitespace-nowrap animate-breath">
-                        <Search className="w-6 h-6 mr-3" />
-                        Explore Now
+                      <Button className="btn-heritage w-full lg:w-auto lg:whitespace-nowrap animate-breath px-6 lg:px-10 py-3 lg:py-5">
+                        <Search className="w-5 h-5 lg:w-6 lg:h-6 mr-2 lg:mr-3" />
+                        <span className="hidden sm:inline">Explore Now</span>
+                        <span className="sm:hidden">Explore</span>
                       </Button>
                     </motion.div>
                   </div>

@@ -130,17 +130,17 @@ const SmartPlanner = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-4"
                   >
-                    <h3 className="text-xl font-semibold text-foreground">Where would you like to explore in Jharkhand?</h3>
+                    <h3 className="text-lg lg:text-xl font-semibold text-foreground mb-3">Where would you like to explore in Jharkhand?</h3>
                     <Input
-                      placeholder="e.g., Ranchi, Deoghar, Jamshedpur, Hazaribagh..."
-                      className="input-premium"
+                      placeholder="e.g., Ranchi, Deoghar..."
+                      className="input-premium w-full"
                     />
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 lg:gap-3">
                       {['Ranchi', 'Deoghar', 'Jamshedpur', 'Hazaribagh', 'Dhanbad', 'Bokaro'].map((city) => (
                           <Button
                             key={city}
                             variant="outline"
-                            className="justify-start hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-white transition-all duration-300 border-2 border-border hover:border-primary/50 font-medium magnetic-hover"
+                            className="justify-center text-sm lg:text-base hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-white transition-all duration-300 border-2 border-border hover:border-primary/50 font-medium magnetic-hover truncate"
                           >
                           {city}
                         </Button>
@@ -267,18 +267,18 @@ const SmartPlanner = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-4"
                   >
-                    <h3 className="text-xl font-semibold text-foreground">What's your travel style?</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <h3 className="text-lg lg:text-xl font-semibold text-foreground mb-3">What's your travel style?</h3>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
                       {travelStyles.map((style) => (
                         <Button
                           key={style.id}
                           variant="outline"
-                          className="p-4 h-auto text-left flex items-start space-x-3 hover:bg-primary hover:text-primary-foreground"
+                          className="p-3 lg:p-4 h-auto text-left flex items-start space-x-3 hover:bg-primary hover:text-primary-foreground min-h-0"
                         >
-                          <span className="text-2xl">{style.icon}</span>
-                          <div>
-                            <div className="font-medium">{style.label}</div>
-                            <div className="text-xs opacity-70">{style.description}</div>
+                          <span className="text-xl lg:text-2xl flex-shrink-0">{style.icon}</span>
+                          <div className="min-w-0 flex-1">
+                            <div className="font-medium text-sm lg:text-base truncate">{style.label}</div>
+                            <div className="text-xs opacity-70 line-clamp-2">{style.description}</div>
                           </div>
                         </Button>
                       ))}
