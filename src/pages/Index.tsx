@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import DestinationExplorer from '@/components/DestinationExplorer';
 import SmartPlanner from '@/components/SmartPlanner';
-import IntegratedTourismData from '@/components/IntegratedTourismData';
+import SimpleTourismData from '@/components/SimpleTourismData';
 
 const Index = () => {
   return (
@@ -12,7 +12,7 @@ const Index = () => {
       <HeroSection />
       <DestinationExplorer />
       <SmartPlanner />
-      <IntegratedTourismData />
+      <SimpleTourismData />
       
       {/* Additional sections will be added in future iterations */}
       <div className="py-20 text-center">
