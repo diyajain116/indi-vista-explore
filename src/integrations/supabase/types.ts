@@ -14,7 +14,101 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      tourism_content: {
+        Row: {
+          category: string | null
+          contact_info: Json | null
+          content: string | null
+          created_at: string
+          description: string | null
+          district: string | null
+          id: string
+          images: string[] | null
+          location: string | null
+          metadata: Json | null
+          scraped_at: string
+          site_id: string
+          source_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          contact_info?: Json | null
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          district?: string | null
+          id?: string
+          images?: string[] | null
+          location?: string | null
+          metadata?: Json | null
+          scraped_at?: string
+          site_id: string
+          source_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          contact_info?: Json | null
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          district?: string | null
+          id?: string
+          images?: string[] | null
+          location?: string | null
+          metadata?: Json | null
+          scraped_at?: string
+          site_id?: string
+          source_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tourism_content_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: false
+            referencedRelation: "tourism_sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tourism_sites: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          last_scraped_at: string | null
+          name: string
+          site_type: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_scraped_at?: string | null
+          name: string
+          site_type: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_scraped_at?: string | null
+          name?: string
+          site_type?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

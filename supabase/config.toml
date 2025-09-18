@@ -1,1 +1,4 @@
 project_id = "lhpjozajpnabvtomzpfe"
+
+[functions.scrape-tourism-data]
+verify_jwt = false
