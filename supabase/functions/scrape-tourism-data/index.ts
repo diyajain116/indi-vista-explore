@@ -143,48 +143,144 @@ function extractTourismContent(html: string, site: TourismSite): ScrapedContent[
   const content: ScrapedContent[] = [];
   
   try {
-    // Basic HTML content extraction
+    // Enhanced HTML content extraction with better regex patterns
     const titleMatches = html.match(/<title[^>]*>([^<]+)<\/title>/gi) || [];
     const headingMatches = html.match(/<h[1-6][^>]*>([^<]+)<\/h[1-6]>/gi) || [];
     const paragraphMatches = html.match(/<p[^>]*>([^<]+)<\/p>/gi) || [];
     const imageMatches = html.match(/<img[^>]+src="([^"]+)"[^>]*>/gi) || [];
+    const linkMatches = html.match(/<a[^>]+href="([^"]+)"[^>]*>([^<]+)<\/a>/gi) || [];
+    const listMatches = html.match(/<li[^>]*>([^<]+)<\/li>/gi) || [];
     
-    // Extract images
+    // Extract images with better URL handling
     const images = imageMatches
       .map(img => {
         const match = img.match(/src="([^"]+)"/);
-        return match ? match[1] : null;
+        if (match) {
+          let imgUrl = match[1];
+          // Handle relative URLs
+          if (imgUrl.startsWith('/')) {
+            const baseUrl = new URL(site.url).origin;
+            imgUrl = baseUrl + imgUrl;
+          }
+          return imgUrl;
+        }
+        return null;
       })
       .filter(Boolean)
-      .slice(0, 5); // Limit to 5 images
+      .slice(0, 5);
 
-    // Extract main content based on site type
-    if (site.site_type === 'official') {
-      // For official sites, look for specific tourism content
-      const tourismKeywords = ['tourism', 'attraction', 'destination', 'visit', 'travel', 'heritage', 'temple', 'waterfall', 'hill station'];
+    // Enhanced extraction based on site type
+    if (site.site_type === 'official' || site.site_type === 'government') {
+      // Enhanced keyword matching for government portals
+      const tourismKeywords = ['tourism', 'attraction', 'destination', 'visit', 'travel', 'heritage', 'temple', 'waterfall', 'hill station', 'park', 'wildlife', 'forest', 'accommodation', 'hotel', 'resort'];
+      const locationKeywords = ['ranchi', 'jamshedpur', 'dhanbad', 'bokaro', 'deoghar', 'hazaribagh', 'giridih', 'ramgarh', 'chatra', 'palamu'];
       
       const relevantContent = paragraphMatches
         .map(p => p.replace(/<[^>]*>/g, '').trim())
-        .filter(text => text.length > 50 && tourismKeywords.some(keyword => 
+        .filter(text => text.length > 50 && (
+          tourismKeywords.some(keyword => text.toLowerCase().includes(keyword)) ||
+          locationKeywords.some(keyword => text.toLowerCase().includes(keyword))
+        ))
+        .slice(0, 15);
+
+      // Extract structured content from lists
+      const listContent = listMatches
+        .map(li => li.replace(/<[^>]*>/g, '').trim())
+        .filter(text => text.length > 20 && tourismKeywords.some(keyword => 
           text.toLowerCase().includes(keyword)
         ))
         .slice(0, 10);
 
       relevantContent.forEach((text, index) => {
-        if (text.length > 100) {
+        if (text.length > 80) {
+          // Try to extract location from content
+          const location = locationKeywords.find(loc => 
+            text.toLowerCase().includes(loc)
+          );
+          
           content.push({
-            title: `Tourism Content ${index + 1} from ${site.name}`,
-            description: text.substring(0, 200) + '...',
+            title: `${site.name} - Tourism Information ${index + 1}`,
+            description: text.substring(0, 200) + (text.length > 200 ? '...' : ''),
             content: text,
             images: images,
+            location: location ? location.charAt(0).toUpperCase() + location.slice(1) : null,
             source_url: site.url,
             category: 'tourism_info',
             metadata: {
               source_type: site.site_type,
-              extraction_method: 'html_parsing',
+              extraction_method: 'enhanced_parsing',
+              extraction_date: new Date().toISOString()
             }
           });
         }
+      });
+
+      // Add list items as separate content
+      listContent.forEach((text, index) => {
+        content.push({
+          title: `Tourism Facility - ${text.substring(0, 50)}`,
+          description: text,
+          content: text,
+          source_url: site.url,
+          category: 'facility',
+          metadata: {
+            source_type: site.site_type,
+            content_type: 'list_item'
+          }
+        });
+      });
+    }
+
+    // Handle registration portals differently
+    if (site.site_type === 'registration') {
+      const registrationKeywords = ['hotel', 'accommodation', 'tour operator', 'travel agent', 'resort', 'guest house'];
+      
+      const registrationContent = paragraphMatches
+        .map(p => p.replace(/<[^>]*>/g, '').trim())
+        .filter(text => text.length > 30 && registrationKeywords.some(keyword => 
+          text.toLowerCase().includes(keyword)
+        ))
+        .slice(0, 8);
+
+      registrationContent.forEach((text, index) => {
+        content.push({
+          title: `Registered Tourism Service ${index + 1}`,
+          description: text.substring(0, 180) + (text.length > 180 ? '...' : ''),
+          content: text,
+          source_url: site.url,
+          category: 'registered_service',
+          metadata: {
+            source_type: site.site_type,
+            service_type: 'tourism_registration'
+          }
+        });
+      });
+    }
+
+    // Handle environmental/heritage sites
+    if (site.site_type === 'environmental' || site.site_type === 'heritage') {
+      const conservationKeywords = ['biodiversity', 'heritage', 'conservation', 'protected', 'wildlife', 'forest', 'archaeological', 'historical'];
+      
+      const conservationContent = paragraphMatches
+        .map(p => p.replace(/<[^>]*>/g, '').trim())
+        .filter(text => text.length > 40 && conservationKeywords.some(keyword => 
+          text.toLowerCase().includes(keyword)
+        ))
+        .slice(0, 12);
+
+      conservationContent.forEach((text, index) => {
+        content.push({
+          title: `${site.site_type === 'heritage' ? 'Heritage' : 'Biodiversity'} Site ${index + 1}`,
+          description: text.substring(0, 200) + (text.length > 200 ? '...' : ''),
+          content: text,
+          images: images,
+          source_url: site.url,
+          category: site.site_type,
+          metadata: {
+            source_type: site.site_type,
+            conservation_type: site.site_type === 'heritage' ? 'cultural' : 'natural'
+          }
+        });
       });
     }
     

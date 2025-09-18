@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import DestinationExplorer from '@/components/DestinationExplorer';
 import SmartPlanner from '@/components/SmartPlanner';
-import SimpleTourismData from '@/components/SimpleTourismData';
+import JharkhandTourismDashboard from '@/components/JharkhandTourismDashboard';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Index = () => {
               </p>
             </div>
           </div>
-          <SimpleTourismData />
+          <JharkhandTourismDashboard />
         </div>
       ) : (
         <div className="py-16">
