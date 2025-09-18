@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
 import { RefreshCw, Search, ExternalLink, MapPin, Calendar, Info } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface TourismContent {
   id: string;
@@ -149,12 +148,7 @@ const IntegratedTourismData = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
             Integrated Tourism Data
           </h2>
@@ -180,7 +174,7 @@ const IntegratedTourismData = () => {
               </>
             )}
           </Button>
-        </motion.div>
+        </div>
 
         <Tabs defaultValue="content" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-8">
@@ -233,12 +227,7 @@ const IntegratedTourismData = () => {
             {/* Content Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredContent.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
+                <div key={item.id} className="animate-fade-in">
                   <Card className="card-hover h-full">
                     <CardHeader>
                       <div className="flex items-start justify-between gap-4">
@@ -296,7 +285,7 @@ const IntegratedTourismData = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -323,12 +312,7 @@ const IntegratedTourismData = () => {
           <TabsContent value="sources">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {sites.map((site, index) => (
-                <motion.div
-                  key={site.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
+                <div key={site.id} className="animate-fade-in">
                   <Card className="card-hover">
                     <CardHeader>
                       <CardTitle className="flex items-center justify-between">
@@ -366,7 +350,7 @@ const IntegratedTourismData = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
           </TabsContent>
