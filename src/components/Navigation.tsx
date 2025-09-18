@@ -1,13 +1,38 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Phone, User, Search, MapPin, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, Phone, User, Search, MapPin, ChevronDown, LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('en');
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "Signed out successfully!",
+      });
+      navigate('/');
+    }
+    setUserMenuOpen(false);
+  };
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -136,19 +161,68 @@ const Navigation = () => {
                 </Button>
               </motion.div>
 
-              {/* Enhanced Sign In */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button 
-                  variant="outline"
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded-xl glow-on-hover"
+              {/* Enhanced Sign In / User Menu */}
+              {user ? (
+                <div className="relative">
+                  <Button
+                    variant="ghost"
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="flex items-center space-x-2 text-foreground hover:text-primary transition-all duration-300 hover:bg-primary/10 rounded-xl"
+                  >
+                    <User className="w-5 h-5" />
+                    <span className="text-sm font-medium">
+                      {user.user_metadata?.display_name || user.email?.split('@')[0] || 'User'}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: userMenuOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </motion.div>
+                  </Button>
+                  
+                  <AnimatePresence>
+                    {userMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-lg rounded-xl shadow-2xl border border-border/50 py-2 z-50"
+                      >
+                        <div className="px-4 py-2 border-b border-border/50">
+                          <p className="text-sm font-medium text-foreground">
+                            {user.user_metadata?.display_name || 'User'}
+                          </p>
+                          <p className="text-xs text-muted-foreground">{user.email}</p>
+                        </div>
+                        <motion.button
+                          onClick={handleSignOut}
+                          className="w-full text-left px-4 py-3 text-sm text-foreground hover:bg-red-50 hover:text-red-600 flex items-center space-x-2 transition-all duration-200"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          <span>Sign Out</span>
+                        </motion.button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <User className="w-4 h-4 mr-2" />
-                  <span className="font-semibold">Sign In</span>
-                </Button>
-              </motion.div>
+                  <Link to="/auth">
+                    <Button 
+                      variant="outline"
+                      className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded-xl glow-on-hover"
+                    >
+                      <User className="w-4 h-4 mr-2" />
+                      <span className="font-semibold">Sign In</span>
+                    </Button>
+                  </Link>
+                </motion.div>
+              )}
 
               {/* Mobile Menu Button */}
               <motion.div
@@ -222,15 +296,18 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Click outside to close language dropdown */}
+      {/* Click outside to close dropdowns */}
       <AnimatePresence>
-        {languageOpen && (
+        {(languageOpen || userMenuOpen) && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-transparent"
-            onClick={() => setLanguageOpen(false)}
+            onClick={() => {
+              setLanguageOpen(false);
+              setUserMenuOpen(false);
+            }}
           />
         )}
       </AnimatePresence>
