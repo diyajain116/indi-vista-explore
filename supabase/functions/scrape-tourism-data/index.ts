@@ -85,7 +85,8 @@ Deno.serve(async (req) => {
               site_id: site.id,
               scraped_at: new Date().toISOString(),
             })), {
-              onConflict: 'source_url',
+              onConflict: 'site_id,source_url',
+              ignoreDuplicates: false
             });
 
           if (insertError) {
