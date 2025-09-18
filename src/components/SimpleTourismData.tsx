@@ -52,7 +52,7 @@ const SimpleTourismData = () => {
       if (error) throw error;
       setContent(data || []);
     } catch (error) {
-      console.error('Error fetching tourism data:', error);
+      // Silent error handling - show user-friendly message only
       toast({
         title: "Error",
         description: "Failed to fetch tourism data",
@@ -78,7 +78,7 @@ const SimpleTourismData = () => {
       // Refresh the data
       await fetchTourismData();
     } catch (error) {
-      console.error('Error scraping data:', error);
+      // Silent error handling - show user-friendly message only
       toast({
         title: "Error",
         description: "Failed to scrape tourism data",
